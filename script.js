@@ -1,5 +1,30 @@
+// Bemob Conversion Tracking
+function trackBemobConversion(clickUrl) {
+    // Create pixel image to track conversion
+    const img = new Image();
+    img.src = clickUrl;
+    img.style.display = 'none';
+    document.body.appendChild(img);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const header = document.querySelector('.main-header');
+
+    // Track CTA button clicks
+    const headerCtaBtn = document.getElementById('header-cta-btn');
+    const mainCtaBtn = document.getElementById('main-cta-btn');
+    
+    if (headerCtaBtn) {
+        headerCtaBtn.addEventListener('click', (e) => {
+            trackBemobConversion('https://vpobl.bemobtrcks.com/conversion.gif?cid=OPTIONAL');
+        });
+    }
+    
+    if (mainCtaBtn) {
+        mainCtaBtn.addEventListener('click', (e) => {
+            trackBemobConversion('https://vpobl.bemobtrcks.com/conversion.gif?cid=OPTIONAL');
+        });
+    }
 
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
